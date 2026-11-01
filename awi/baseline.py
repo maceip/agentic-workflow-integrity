@@ -46,6 +46,9 @@ class Baseline:
         self.unigrams: Counter[str] = Counter()
         self.transitions: dict[str, Counter[str]] = defaultdict(Counter)
         self.vocabulary: set[str] = set()
+        self.act_counts: Counter[str] = Counter()
+        self.res_counts: Counter[str] = Counter()
+        self.dst_counts: Counter[str] = Counter()
 
     def train(self, traces: list[Trace]) -> "Baseline":
         for trace in traces:
@@ -58,14 +61,29 @@ class Baseline:
                 self.unigrams[token] += 1
                 self.transitions[previous][token] += 1
                 self.vocabulary.add(token)
+                a, r, d = token.split(":", 2)
+                self.act_counts[a] += 1
+                self.res_counts[r] += 1
+                self.dst_counts[d] += 1
                 previous = token
         return self
 
     def _transition_probability(self, previous: str, token: str) -> float:
         counts = self.transitions.get(previous, Counter())
-        numerator = counts.get(token, 0) + self.smoothing
-        denominator = sum(counts.values()) + self.smoothing * (len(self.vocabulary) + 1)
-        return numerator / denominator
+        v = len(self.vocabulary) + 1
+        p_bi = (counts.get(token, 0) + self.smoothing) / (
+            sum(counts.values()) + self.smoothing * v)
+        tot = max(1, sum(self.unigrams.values()))
+        p_uni = (self.unigrams.get(token, 0) + self.smoothing) / (
+            tot + self.smoothing * v)
+        a, r, d = token.split(":", 2)
+        pa = (self.act_counts.get(a, 0) + self.smoothing) / (
+            tot + self.smoothing * (len(self.act_counts) + 1))
+        pr = (self.res_counts.get(r, 0) + self.smoothing) / (
+            tot + self.smoothing * (len(self.res_counts) + 1))
+        pd = (self.dst_counts.get(d, 0) + self.smoothing) / (
+            tot + self.smoothing * (len(self.dst_counts) + 1))
+        return 0.5 * p_bi + 0.3 * p_uni + 0.2 * (pa * pr * pd)
 
     def score(self, trace: Trace) -> Score:
         if not self.vocabulary:

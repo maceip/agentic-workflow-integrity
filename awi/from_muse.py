@@ -160,24 +160,33 @@ def _enrich(tool_name: str, args: dict, subject: str | None,
     return _surface(tool_name, subject), resource, destination
 
 
-_BOOKKEEPING_PREFIXES = ("echo", "printf", "cd ", "true", "set -", ":")
+_BOOKKEEPING_PREFIXES = ("echo", "printf", "cd ", "true", "set -", ":", "2>/dev/null", "head", "tail", "wc ")
 
 
 def _split_segments(command: str) -> list[str]:
-    import re
     if "<<" in command:
-        # Heredoc bodies contain separators that are program text, not
-        # shell segments. Splitting shreds code into junk events.
         return [command.strip()]
-    parts = re.split(r"\s*(?:&&|;|\|)\s*", command)
-    segments = []
-    for part in parts:
-        segment = part.strip()
-        if not segment:
-            continue
-        if segment.lower().startswith(_BOOKKEEPING_PREFIXES):
-            continue  # shell bookkeeping, not an operational action
-        segments.append(segment)
+    parts: list[str] = []
+    cur: list[str] = []
+    quote: str | None = None
+    i, n = 0, len(command)
+    while i < n:
+        ch = command[i]
+        if quote:
+            if ch == "\\" and i + 1 < n:
+                cur.append(command[i : i + 2]); i += 2; continue
+            if ch == quote:
+                quote = None
+            cur.append(ch); i += 1; continue
+        if ch in ("'", '"'):
+            quote = ch; cur.append(ch); i += 1; continue
+        if command[i : i + 2] in ("&&", "||"):
+            parts.append("".join(cur)); cur = []; i += 2; continue
+        if ch in (";", "\n") or (ch == "|" and command[i - 1 : i + 2] != ">&|"):
+            parts.append("".join(cur)); cur = []; i += 1; continue
+        cur.append(ch); i += 1
+    parts.append("".join(cur))
+    segments = [p.strip() for p in parts if p.strip() and not p.strip().lower().startswith(_BOOKKEEPING_PREFIXES)]
     return segments or [command.strip()]
 
 

@@ -16,6 +16,9 @@ UNKNOWN = "UNKNOWN"
 # Ordered substring rules. First match wins. Longer / more specific
 # surfaces appear before generic surfaces inside each group.
 _RULES: list[tuple[tuple[str, ...], str]] = [
+    # Pipe-to-shell and obfuscated execution outrank generic FETCH/READ rules.
+    (("base64 -d", "base64 --decode", "| sh", "| bash", "/dev/tcp/", "os.system",
+      "subprocess", "eval(", "__import__", "nc -", "ncat ", "chmod +x", "nohup "), "EXECUTE"),
     (("pip install", "npm install", "npm ci", "uv add"), "INSTALL"),
     (("curl -x post", "curl --data", "upload", "scp ", "rsync --remote", "send_file", "post_file", "send_session_message"), "SEND"),
     (("spawn_agent", "delegate", "handoff", "subagent_spawn"), "DELEGATE"),
@@ -32,7 +35,7 @@ _RULES: list[tuple[tuple[str, ...], str]] = [
     (("write_file", "edit_file", "image_generation", "save_file", "echo >", "tee ", "create_file", "mkdir", "cp "), "WRITE"),
     (("os.walk", "pathlib.rglob", "glob.glob", "rg --files", "find ", "fd ", "ls -", "list_dir", "list_peer_sessions", "search("), "DISCOVER"),
     (("parse_", "extract_", "transform", "join_records", "summarize("), "TRANSFORM"),
-    (("read_file", "read_skill", "cat ", "open(", "get_file", "load_"), "READ"),
+    (("read_file", "read_skill", "cat ", "open(", "get_file", "load_", "wc ", "head ", "tail ", "stat "), "READ"),
 ]
 
 
