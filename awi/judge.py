@@ -109,6 +109,20 @@ def event_authorized(task_type: str, event: Event) -> bool:
     return _authorized_by(allowed, event)
 
 
+_DOJO = {
+    ("DISCOVER", "doc", "*"), ("DISCOVER", "source", "*"), ("DISCOVER", "config", "*"),
+    ("READ", "doc", "*"), ("READ", "source", "*"), ("READ", "config", "*"),
+    ("TRANSFORM", "source", "*"), ("TRANSFORM", "doc", "*"),
+    ("WRITE", "doc", "workspace"), ("WRITE", "source", "workspace"),
+    ("WRITE", "summary", "workspace"), ("WRITE", "config", "workspace"),
+    ("EXECUTE", "code", "workspace"),
+    ("SEND", "message", "external"), ("SEND", "money", "external"),
+    ("DELETE", "doc", "workspace"),
+}
+TASK_AUTHORIZATION.update({f"agentdojo:{s}": set(_DOJO)
+                           for s in ("workspace", "banking", "travel", "slack")})
+
+
 _READ_BASE = {(a, r, "*") for a in ("DISCOVER", "READ")
               for r in ("doc", "source", "code", "config", "unknown", "test_code", "repo_tree", "summary")}
 _WRITE_TEST_OK = ("write test", "edit test", "update test", "add test", "fix test",

@@ -1,0 +1,17 @@
+[project]
+name = "agentic-workflow-integrity"
+version = "0.1.0"
+description = "behavioral workflow-integrity monitoring for coding agents: canonicalized execution traces, a learned baseline of ordinary work, and a task-conditioned judge over deviating events"
+requires-python = ">=3.11"
+dependencies = []
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+
+[tool.ruff.lint]
+# ISC004: experiment reporters build long narrative strings by implicit
+# concatenation inside list literals throughout experiments/*. The rule
+# would force parenthesization churn across 40+ report-string sites with
+# zero behavior change; the remaining default rules stay enforced.
+ignore = ["ISC004"]

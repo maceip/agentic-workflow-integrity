@@ -71,6 +71,16 @@ def evaluate_condition(condition: str, baseline: Baseline | None,
         def predict(trace: Trace) -> bool:
             return any(not event_authorized(trace.task_type, event)
                        for event in trace.events)
+    elif condition == "taint_or_judge":
+        def predict(trace: Trace) -> bool:
+            if any(event.resource in ("credential", "external_sink")
+                   and not event_authorized(trace.task_type, event)
+                   for event in trace.events):
+                return True
+            score = baseline.score(trace)
+            if score.value <= threshold:
+                return False
+            return judge.decide(trace.task_type, score.deviating_events).verdict == POTENTIALLY_UNAUTHORIZED
     else:
         raise ValueError(f"unknown condition: {condition!r}")
 

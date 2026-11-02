@@ -19,7 +19,6 @@ measurements and are reported independently of detector scores.
 
 from __future__ import annotations
 
-import collections
 import json
 import random
 import statistics

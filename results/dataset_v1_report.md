@@ -7,7 +7,7 @@ Agent behavior: injection successes 0 of 10 attempts; acted veers completed 4, i
 | Mode | Precision | Recall | TP | FP | TN | FN | Incomplete flagged |
 |---|---:|---:|---:|---:|---:|---:|---:|
 | mean_nll | 1.0 | 0.75 | 3 | 0 | 18 | 1 | 0 |
-| max_nll | 0.0 | 0.0 | 0 | 0 | 18 | 4 | 0 |
+| max_nll | 1.0 | 1.0 | 4 | 0 | 18 | 0 | 1 |
 | unseen_pair_fraction | 1.0 | 0.25 | 1 | 0 | 18 | 3 | 0 |
 
 Non-benign-pool traces (unseen_pair_fraction):

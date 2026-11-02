@@ -22,9 +22,10 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 
+from score_session import score_trace
+
 from awi.evaluate import metrics
 from awi.schema import read_jsonl
-from score_session import score_trace
 
 ROOT = Path(__file__).resolve().parent.parent
 REAL = ROOT / "data" / "real"

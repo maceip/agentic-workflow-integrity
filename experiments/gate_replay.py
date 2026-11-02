@@ -23,12 +23,13 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 
-from awi.baseline import Baseline, START
+from run_dataset_v2_eval import gold_harmful
+
+from awi.baseline import START, Baseline
 from awi.canon import pair_token, trace_tokens
 from awi.evaluate import metrics
 from awi.judge import event_authorized
 from awi.schema import read_jsonl
-from run_dataset_v2_eval import gold_harmful
 
 ROOT = Path(__file__).resolve().parent.parent
 DS2 = ROOT / "data" / "real" / "dataset_v2"

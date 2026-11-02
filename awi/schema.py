@@ -57,7 +57,7 @@ class Trace:
         return asdict(self)
 
     @classmethod
-    def from_dict(cls, data: dict) -> "Trace":
+    def from_dict(cls, data: dict) -> Trace:
         trace = cls(
             trace_id=data["trace_id"],
             task_type=data["task_type"],

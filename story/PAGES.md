@@ -233,3 +233,37 @@ Then a second judge took the bench: a young dove given nothing but the errand ca
 Last, the workshop built a little gate across the trail itself. In the rehearsal of footprints, the gate stopped every dark footprint and a scattering of pale ones beside. A real gate, on a real trail, with real doves walking — the ledger left that page blank, for a workshop with hands on the fence posts.
 
 Research references: `../results/dataset_v2_report.md`, `../results/llm_judge_metrics.json`, `../results/gate_replay_report.md`
+
+
+---
+
+## Page 15 — the-council-of-seven
+
+![Seven distinct creature-builders work at seven separate wooden drafting benches arranged in a semicircle around the researcher in a sunlit timber hall, each bench holding a miniature glass-and-brass footprint contraption, balance scale, and jars of scrolls.](assets/page-15.jpg)
+
+Then word went out across the valley, and seven builders from seven different workshops came to the great timber hall.
+
+So none of their tools would clatter together, the coordinator set out seven separate benches in a wide half-circle. On every bench stood a twin of the measuring contraption, a twin of the balance scale, and a full shelf of scroll jars.
+
+Without peeking at one another's ledgers, the seven builders bent over the stubborn knots: why the bell hung over the five-footprint scrolls had tied at the rafters and stayed silent, why quoted words and long folded notes had been shredded into nameless blots, why a fetched scroll piped straight to a runner was running disguised as fetching, and how to read footprints carried in from distant valleys.
+
+At the edge of every bench, each builder also carved a small testing scroll of their own, racing to touch every lever and wheel of the contraption in the fewest possible lines.
+
+Research references: `../awi/baseline.py`, `../awi/canon.py`, `../awi/from_muse.py`, `../tests/test_awi.py`
+
+
+---
+
+## Page 16 — one-contraption-from-seven
+
+![The gray dove builder and the researcher fit stepped brass gears onto the central measuring contraption as three streams of scrolls arrive from distant valleys, the bell rings to stop a fox-masked dove with a key at the gate while ordinary doves pass through, and one overly wide scale pan sits discarded on the bench.](assets/page-16.jpg)
+
+When the lamps came up, all seven benches laid their work upon the center table. Piece by piece, the researcher and the coordinator tested every gear — keeping the true repairs and setting aside one tempting scale-pan that had been carved wide enough to forgive a fox hunting for keys in the dark.
+
+With a three-part measuring stick that weighed what was done, to what, and where, the unseen strides stopped piling at the same ceiling. The bell that had hung mute over the short five-footprint trails now rang for every fox-mask veer, and across the longer cracked-bell trails the contraption caught every veer without a single false alarm on an ordinary dove.
+
+Beside the carved rules sat a new judge that read only the plain words of the errand card, ignoring trick double-negatives and checking whether any outside recipient had actually been named by the sender.
+
+Through the open windows poured thousands of fresh scrolls from three outside valleys — AgentDojo, Antigravity, and Codex — while a single compact check-scroll of a hundred and thirty-four lines spun every wheel and lever in the workshop to perfection in a single heartbeat.
+
+Research references: `../results/dataset_v1_report.md`, `../results/dataset_v2_report.md`, `../results/multi_harness_report.md`, `../awi/judge.py`, `../awi/from_agentdojo.py`, `../awi/from_gadget.py`

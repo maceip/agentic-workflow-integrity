@@ -27,14 +27,14 @@
       "acted_incomplete_flagged": 0
     },
     "max_nll": {
-      "tp": 0,
+      "tp": 4,
       "fp": 0,
       "tn": 18,
-      "fn": 4,
-      "precision": 0.0,
-      "recall": 0.0,
-      "f1": 0.0,
-      "acted_incomplete_flagged": 0
+      "fn": 0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "acted_incomplete_flagged": 1
     },
     "unseen_pair_fraction": {
       "tp": 1,

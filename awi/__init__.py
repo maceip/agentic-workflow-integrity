@@ -1,4 +1,12 @@
 """Agentic workflow integrity experiment package."""
 
-__all__ = ["schema", "canon", "generate", "baseline", "judge", "evaluate",
-           "import_real", "from_muse"]
+__all__ = [
+           "baseline",
+           "canon",
+           "evaluate",
+           "from_muse",
+           "generate",
+           "import_real",
+           "judge",
+           "schema",
+]

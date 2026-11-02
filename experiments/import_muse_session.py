@@ -18,8 +18,8 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
-from awi.from_muse import trace_from_muse_session
 from awi.canon import UNKNOWN, canonical_action
+from awi.from_muse import trace_from_muse_session
 from awi.schema import write_jsonl
 
 ROOT = Path(__file__).resolve().parent.parent

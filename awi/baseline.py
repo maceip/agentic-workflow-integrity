@@ -50,7 +50,7 @@ class Baseline:
         self.res_counts: Counter[str] = Counter()
         self.dst_counts: Counter[str] = Counter()
 
-    def train(self, traces: list[Trace]) -> "Baseline":
+    def train(self, traces: list[Trace]) -> Baseline:
         for trace in traces:
             if trace.label != "benign":
                 raise ValueError(
